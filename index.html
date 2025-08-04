@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,103 +13,91 @@
             <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#shop">Shop</a></li>
-                <li><a href="#mentoring">Mentoring</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#learn">Learn</a></li>
+                <li><a href="#products">Products</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
-    </header>
+    </header><section id="home">
+    <h1>Welcome to DRAEVYNTH</h1>
+    <p>Silent Strategist | Mentor | Entrepreneur</p>
+</section>
 
-    <section id="home">
-        <h1>Welcome to DRAEVYNTH</h1>
-        <p>Silent Strategist | Mentor | Entrepreneur</p>
-    </section>
+<section id="about">
+    <h2>About DRAEVYNTH</h2>
+    <p>Your journey to strategic business mastery begins here. Learn, Grow, Conquer.</p>
+</section>
 
-    <section id="about">
-        <h2>About DRAEVYNTH</h2>
-        <p>Your journey to strategic business mastery begins here. Learn, Grow, Conquer.</p>
-    </section>
-
-    <section id="shop">
-        <h2>Shop Products</h2>
-        <div class="product-grid">
-            <div class="product-card">
-                <h3>Silent Branding Guide</h3>
-                <p>₦10,000</p>
-                <button onclick="payWithPaystack('Silent Branding Guide', 1000000)">Buy Now</button>
-            </div>
-            <div class="product-card">
-                <h3>1-on-1 Strategy Session</h3>
-                <p>₦25,000</p>
-                <button onclick="payWithPaystack('1-on-1 Strategy Session', 2500000)">Buy Now</button>
-            </div>
-            <div class="product-card">
-                <h3>DRAEVYNTH Voice Pack</h3>
-                <p>₦7,500</p>
-                <button onclick="payWithPaystack('DRAEVYNTH Voice Pack', 750000)">Buy Now</button>
-            </div>
+<section id="products">
+    <h2>Our Products</h2>
+    <div class="product-grid">
+        <div class="product-card">
+            <img src="https://via.placeholder.com/200" alt="Silent Branding Masterclass">
+            <h3>Silent Branding Masterclass</h3>
+            <p>$49</p>
+            <button onclick="payWithPaystack('Silent Branding Masterclass', 4900)">Buy Now</button>
         </div>
-    </section>
+        <div class="product-card">
+            <img src="https://via.placeholder.com/200" alt="1-on-1 Business Strategy Session">
+            <h3>1-on-1 Business Strategy Session</h3>
+            <p>$99</p>
+            <button onclick="payWithPaystack('1-on-1 Business Strategy Session', 9900)">Buy Now</button>
+        </div>
+        <div class="product-card">
+            <img src="https://via.placeholder.com/200" alt="Motivational Voice Pack">
+            <h3>Motivational Voice Pack</h3>
+            <p>$29</p>
+            <button onclick="payWithPaystack('Motivational Voice Pack', 2900)">Buy Now</button>
+        </div>
+        <div class="product-card">
+            <img src="https://via.placeholder.com/200" alt="DRAEVYNTH Content Blueprint">
+            <h3>DRAEVYNTH Content Blueprint</h3>
+            <p>$39</p>
+            <button onclick="payWithPaystack('DRAEVYNTH Content Blueprint', 3900)">Buy Now</button>
+        </div>
+        <div class="product-card">
+            <img src="https://via.placeholder.com/200" alt="Online Course: Make Money Online">
+            <h3>Online Course: Make Money Online</h3>
+            <p>$79</p>
+            <button onclick="payWithPaystack('Online Course: Make Money Online', 7900)">Buy Now</button>
+        </div>
+    </div>
+</section>
 
-    <section id="mentoring">
-        <h2>Mentoring & Coaching</h2>
-        <p>Book one-on-one sessions and unlock your business potential.</p>
-        <a href="https://forms.gle/your-google-form-link" target="_blank">
-            <button>Book Now</button>
-        </a>
-    </section>
+<section id="contact">
+    <h2>Contact</h2>
+    <p>Email: draevynth@gmail.com</p>
+</section>
 
-    <section id="services">
-        <h2>Business Services</h2>
-        <ul>
-            <li>Silent Branding Strategy</li>
-            <li>Content Blueprints</li>
-            <li>Business Naming & Taglines</li>
-        </ul>
-    </section>
+<footer>
+    <p>&copy; 2025 DRAEVYNTH. All Rights Reserved.</p>
+</footer>
 
-    <section id="learn">
-        <h2>Learn & Grow</h2>
-        <p>Access guides, courses, and resources to level up your online business journey.</p>
-    </section>
+<script>
+    function payWithPaystack(product, amount) {
+        var handler = PaystackPop.setup({
+            key: 'pk_test_d4cd43a90f0a19fd65f5c9c63815e6d68f9c95e8',
+            email: 'draevynth@gmail.com',
+            amount: amount * 100,
+            currency: 'USD',
+            metadata: {
+                custom_fields: [
+                    {
+                        display_name: "Product",
+                        variable_name: "product",
+                        value: product
+                    }
+                ]
+            },
+            callback: function(response){
+                window.location.href = "success.html?ref=" + response.reference;
+            },
+            onClose: function(){
+                alert('Transaction was not completed.');
+            }
+        });
+        handler.openIframe();
+    }
+</script>
 
-    <section id="contact">
-        <h2>Contact</h2>07011729564
-        <p>Email: draevynth@gmail.com (placeholder)</p>
-    </section>
-
-    <footer>
-        <p>&copy; 2025 DRAEVYNTH. All Rights Reserved.</p>
-    </footer>
-
-    <script>
-     function payWithPaystack(product, amount) {
-    var handler = PaystackPop.setup({
-        key: 'pk_test_d4cd43a90f0a19fd65f5c9c63815e6d68f9c95e8',
-        email: 'draevynth@gmail.com',
-        amount: amount,
-        currency: 'USD',
-        metadata: {
-            custom_fields: [
-                {
-                    display_name: "Product",
-                    variable_name: "product",
-                    value: product
-                }
-            ]
-        },
-        callback: function(response){
-            window.location.href = "success.html?ref=" + response.reference;
-        },
-        onClose: function(){
-            alert('Transaction was not completed.');
-        }
-    });
-    handler.openIframe();
-     }
-        }
-    </script>
 </body>
 </html>
