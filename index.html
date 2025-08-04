@@ -1,39 +1,103 @@
-<section id="products">
-  <h2>Our Products</h2>
-  <div class="product-grid">
-    <div class="product-card">
-      <img src="https://placehold.co/600x400/0d0d0d/00ff99?text=Silent+Branding+Masterclass" alt="Silent Branding Masterclass">
-      <h3>Silent Branding Masterclass</h3>
-      <p>$49</p>
-      <button onclick="payWithPaystack('Silent Branding Masterclass', 4900)">Buy Now</button>
-    </div>
-
-    <div class="product-card">
-      <img src="https://placehold.co/600x400/0d0d0d/00ff99?text=1-on-1+Strategy+Session" alt="1-on-1 Strategy Session">
-      <h3>1-on-1 Business Strategy Session</h3>
-      <p>$99</p>
-      <button onclick="payWithPaystack('1-on-1 Business Strategy Session', 9900)">Buy Now</button>
-    </div>
-
-    <div class="product-card">
-      <img src="https://placehold.co/600x400/0d0d0d/00ff99?text=Motivational+Voice+Pack" alt="Motivational Voice Pack">
-      <h3>Motivational Voice Pack</h3>
-      <p>$29</p>
-      <button onclick="payWithPaystack('Motivational Voice Pack', 2900)">Buy Now</button>
-    </div>
-
-    <div class="product-card">
-      <img src="https://placehold.co/600x400/0d0d0d/00ff99?text=Content+Blueprint" alt="Content Blueprint">
-      <h3>DRAEVYNTH Content Blueprint</h3>
-      <p>$39</p>
-      <button onclick="payWithPaystack('DRAEVYNTH Content Blueprint', 3900)">Buy Now</button>
-    </div>
-
-    <div class="product-card">
-      <img src="https://placehold.co/600x400/0d0d0d/00ff99?text=Make+Money+Online+Course" alt="Make Money Online Course">
-      <h3>Make Money Online Course</h3>
-      <p>$79</p>
-      <button onclick="payWithPaystack('Make Money Online Course', 7900)">Buy Now</button>
-    </div>
-  </div>
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DRAEVYNTH | Official Website</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">DRAEVYNTH</div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header><section id="home">
+    <h1>Welcome to DRAEVYNTH</h1>
+    <p>Silent Strategist | Mentor | Entrepreneur</p>
 </section>
+
+<section id="about">
+    <h2>About DRAEVYNTH</h2>
+    <p>Your journey to strategic business mastery begins here. Learn, Grow, Conquer.</p>
+</section>
+
+<section id="products">
+    <h2>Our Products</h2>
+    <div class="product-grid">
+        <div class="product-card">
+            <img src="https://via.placeholder.com/200" alt="Silent Branding Masterclass">
+            <h3>Silent Branding Masterclass</h3>
+            <p>$49</p>
+            <button onclick="payWithPaystack('Silent Branding Masterclass', 4900)">Buy Now</button>
+        </div>
+        <div class="product-card">
+            <img src="https://via.placeholder.com/200" alt="1-on-1 Business Strategy Session">
+            <h3>1-on-1 Business Strategy Session</h3>
+            <p>$99</p>
+            <button onclick="payWithPaystack('1-on-1 Business Strategy Session', 9900)">Buy Now</button>
+        </div>
+        <div class="product-card">
+            <img src="https://via.placeholder.com/200" alt="Motivational Voice Pack">
+            <h3>Motivational Voice Pack</h3>
+            <p>$29</p>
+            <button onclick="payWithPaystack('Motivational Voice Pack', 2900)">Buy Now</button>
+        </div>
+        <div class="product-card">
+            <img src="https://via.placeholder.com/200" alt="DRAEVYNTH Content Blueprint">
+            <h3>DRAEVYNTH Content Blueprint</h3>
+            <p>$39</p>
+            <button onclick="payWithPaystack('DRAEVYNTH Content Blueprint', 3900)">Buy Now</button>
+        </div>
+        <div class="product-card">
+            <img src="https://via.placeholder.com/200" alt="Online Course: Make Money Online">
+            <h3>Online Course: Make Money Online</h3>
+            <p>$79</p>
+            <button onclick="payWithPaystack('Online Course: Make Money Online', 7900)">Buy Now</button>
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <h2>Contact</h2>
+    <p>Email: draevynth@gmail.com</p>
+</section>
+
+<footer>
+    <p>&copy; 2025 DRAEVYNTH. All Rights Reserved.</p>
+</footer>
+
+<script>
+    function payWithPaystack(product, amount) {
+        var handler = PaystackPop.setup({
+            key: 'pk_test_d4cd43a90f0a19fd65f5c9c63815e6d68f9c95e8',
+            email: 'draevynth@gmail.com',
+            amount: amount * 100,
+            currency: 'USD',
+            metadata: {
+                custom_fields: [
+                    {
+                        display_name: "Product",
+                        variable_name: "product",
+                        value: product
+                    }
+                ]
+            },
+            callback: function(response){
+                window.location.href = "success.html?ref=" + response.reference;
+            },
+            onClose: function(){
+                alert('Transaction was not completed.');
+            }
+        });
+        handler.openIframe();
+    }
+</script>
+
+</body>
+</html>
