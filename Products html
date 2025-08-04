@@ -1,0 +1,96 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details | DRAEVYNTH</title>
+    <style>
+        body { background-color: #0d0d0d; color: #f5f5f5; font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        .container { max-width: 800px; margin: 50px auto; padding: 20px; background: #1a1a1a; border-radius: 10px; }
+        img { width: 100%; border-radius: 10px; margin-bottom: 20px; }
+        h1 { color: #00ff99; }
+        .price { font-size: 24px; margin: 20px 0; }
+        .buy-button { padding: 15px 30px; background-color: #00ff99; color: #0d0d0d; text-decoration: none; border-radius: 5px; font-weight: bold; }
+        .buy-button:hover { background-color: #00cc7a; }
+        a.back { color: #00ff99; display: inline-block; margin-top: 20px; text-decoration: underline; }
+    </style>
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+</head>
+<body>
+    <div class="container">
+        <img id="productImage" src="" alt="Product Image">
+        <h1 id="productTitle">Product Title</h1>
+        <p id="productDescription">Product full description goes here...</p>
+        <div class="price" id="productPrice">$0</div>
+        <button class="buy-button" onclick="payWithPaystack()">Buy Now</button>
+        <a href="index.html" class="back">&larr; Back to Products</a>
+    </div><script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const product = urlParams.get('product');
+
+    const products = {
+        "branding": {
+            title: "Silent Branding Masterclass",
+            description: "Learn how to build a powerful silent brand strategy that speaks volumes.",
+            price: 49,
+            amount: 4900,
+            image: "https://images.pexels.com/photos/6949416/pexels-photo-6949416.jpeg"
+        },
+        "strategy": {
+            title: "1-on-1 Business Strategy Session",
+            description: "Get a personalized business strategy consultation with DRAEVYNTH.",
+            price: 99,
+            amount: 9900,
+            image: "https://images.pexels.com/photos/8349233/pexels-photo-8349233.jpeg"
+        },
+        "voicepack": {
+            title: "Motivational Voice Pack",
+            description: "Download exclusive motivational voice packs to boost your daily mindset.",
+            price: 29,
+            amount: 2900,
+            image: "https://images.pexels.com/photos/8761621/pexels-photo-8761621.jpeg"
+        },
+        "blueprint": {
+            title: "DRAEVYNTH Content Blueprint",
+            description: "A complete content creation guide to dominate your niche silently.",
+            price: 39,
+            amount: 3900,
+            image: "https://images.pexels.com/photos/5905707/pexels-photo-5905707.jpeg"
+        },
+        "course": {
+            title: "Make Money Online Course",
+            description: "Step-by-step guide to building your online income streams.",
+            price: 79,
+            amount: 7900,
+            image: "https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg"
+        }
+    };
+
+    if (products[product]) {
+        const p = products[product];
+        document.getElementById('productTitle').innerText = p.title;
+        document.getElementById('productDescription').innerText = p.description;
+        document.getElementById('productPrice').innerText = "$" + p.price;
+        document.getElementById('productImage').src = p.image;
+    }
+
+    function payWithPaystack() {
+        const p = products[product];
+        var handler = PaystackPop.setup({
+            key: 'pk_test_d4cd43a90f0a19fd65f5c9c63815e6d68f9c95e8',
+            email: 'draevynth@gmail.com',
+            amount: p.amount * 100,
+            currency: 'USD',
+            metadata: { custom_fields: [{ display_name: "Product", variable_name: "product", value: p.title }] },
+            callback: function(response){
+                window.location.href = "success.html?ref=" + response.reference;
+            },
+            onClose: function(){
+                alert('Transaction was not completed.');
+            }
+        });
+        handler.openIframe();
+    }
+</script>
+
+</body>
+</html>
