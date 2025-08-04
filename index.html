@@ -86,29 +86,30 @@
     </footer>
 
     <script>
-        function payWithPaystack(product, amount) {
-            var handler = PaystackPop.setup({
-                key: 'pk_test_d4cd43a90f0a19fd65f5c9c63815e6d68f9c95e8',
-                email: 'draevynth@gmail.com',
-                amount: amount,
-                currency: 'USD',
-                metadata: {
-                    custom_fields: [
-                        {
-                            display_name: "Product",
-                            variable_name: "product",
-                            value: product
-                        }
-                    ]
-                },
-                callback: function(response){
-                    window.location.href = "success.html?ref=" + response.reference;
-                },
-                onClose: function(){
-                    alert('Transaction was not completed.');
+     function payWithPaystack(product, amount) {
+    var handler = PaystackPop.setup({
+        key: 'pk_test_d4cd43a90f0a19fd65f5c9c63815e6d68f9c95e8',
+        email: 'draevynth@gmail.com',
+        amount: amount,
+        currency: 'USD',
+        metadata: {
+            custom_fields: [
+                {
+                    display_name: "Product",
+                    variable_name: "product",
+                    value: product
                 }
-            });
-            handler.openIframe();
+            ]
+        },
+        callback: function(response){
+            window.location.href = "success.html?ref=" + response.reference;
+        },
+        onClose: function(){
+            alert('Transaction was not completed.');
+        }
+    });
+    handler.openIframe();
+     }
         }
     </script>
 </body>
