@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -49,11 +50,12 @@
         <p>Thank you for your purchase.<br>Your payment reference is:</p>
         <p id="reference" style="font-weight:bold; color:#ffffff;"></p>
         <a href="index.html" class="btn-home">Back to Home</a>
-    </div><script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const reference = urlParams.get('ref');
-    document.getElementById('reference').innerText = reference ? reference : 'N/A';
-</script>
+    </div>
 
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const reference = urlParams.get('ref');
+        document.getElementById('reference').innerText = reference ? reference : 'N/A';
+    </script>
 </body>
 </html>
